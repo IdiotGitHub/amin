@@ -67,9 +67,18 @@
     </nav>
     <div class="container-fluid">
         <div class="col-md-2 left-side">
-            <li v-for="item in menus"> {{item}}</li>
+            <div class="menu" v-for="item in menus" v-if="item.parent_id == 0" @click="toggleMenu(item.id)">
+                {{item.menu_name}}
+                <li class="glyphicon glyphicon-menu-right" v-if="arrowId != item.id"></li>
+                <li class="glyphicon glyphicon-menu-down" v-else></li>
+                <div class="menu" v-show="showChildId == item.id && isShowChild" v-for="child in menus" v-if="item.id == child.parent_id">
+                        <div @click="menuClick(child.url)">{{child.menu_name}}</div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-10 main"></div>
+        <iframe class="col-md-10 main" name="main" scrolling="auto" :src="iframeSrc">
+
+        </iframe>
     </div>
 </div>
 <script src="../js/jquery.min.js"></script>
@@ -80,12 +89,50 @@
     let app = new Vue({
         el: "#index",
         data: {
-            menus: []
+            menus: [],
+            isShowChild: false,
+            showChildId: 0,
+            arrowId: 0,
+            iframeSrc: ""
         },
         mounted() {
-            this.menus = ['1', '2', '3']
+            //need another url
+            this.menus = [
+                {"id": "1", "menu_name": "system manage", "parent_id": "0", "url": ""},
+                {"id": "2", "menu_name": "system-setting2", "parent_id": "0", "url": ""},
+                {"id": "3", "menu_name": "system-setting3", "parent_id": "0", "url": ""},
+                {"id": "4", "menu_name": "system-setting4", "parent_id": "0", "url": ""},
+                {"id": "5", "menu_name": "menu manage", "parent_id": "1", "url": "./menu.html"},
+                {"id": "6", "menu_name": "system-setting12", "parent_id": "1", "url": ""},
+                {"id": "7", "menu_name": "system-setting13", "parent_id": "1", "url": ""},
+                {"id": "8", "menu_name": "system-setting21", "parent_id": "2", "url": ""},
+                {"id": "9", "menu_name": "system-setting31", "parent_id": "3", "url": ""},
+            ]
+            //send axios request menus
+            //json:
+            // {"id":"1","menu_name":"system-setting","parent_id":"0"}
+            // axios.get().then(
+            //     function (res) {
+            //         if (res.status === 200) {
+            //             this.menus = res.data
+            //         }
+            //     }
+            // )
         },
-        methods: {}
+        methods: {
+            toggleMenu: function (id) {
+                this.showChildId = id;
+                this.isShowChild = !this.isShowChild
+                if (this.isShowChild) {
+                    this.arrowId = id
+                } else {
+                    this.arrowId = 0
+                }
+            },
+            menuClick: function (url) {
+                this.iframeSrc = url
+            }
+        }
     })
 </script>
 </body>
