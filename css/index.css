@@ -1,0 +1,20 @@
+.navbar {
+    margin-bottom: 0;
+}
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+.left-side {
+    height: 100vh;
+    margin: 0;
+    padding-top: 60px;
+    background-color: #1b6d85;
+}
+
+.main {
+    height: 100vh;
+    margin: 0;
+    background-color: #2aabd2;
+    padding: 60px 15px 10px 15px;
+}
