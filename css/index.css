@@ -12,18 +12,22 @@
 .left-side {
     height: 100vh;
     margin: 0;
-    padding-top: 60px;
-    background-color: #1b6d85;
+    padding: 50px 0 0;
+    background-color: #011f2c;
     text-align: center;
     user-select: none;
+    color: white;
 }
-
+.left-side a {
+    text-decoration: none;
+    color: white;
+}
 .main {
     height: 100vh;
     margin: 0;
     background-color: #2aabd2;
-    padding: 60px 20px 10px 15px;
-    overflow-y: scroll;
+    padding: 55px 5px 5px 5px;
+    /*overflow-y: scroll;*/
 }
 
 .menu:hover {
@@ -31,6 +35,25 @@
 }
 
 .menu {
-    min-height: 45px;
-    line-height: 45px;
+    min-height: 50px;
+    line-height: 50px;
+    /*border-bottom: 1px solid #DDDDDD;*/
+}
+
+.child {
+    /*border-bottom: 1px solid #DDDDDD;*/
+    height: 40px;
+    line-height: 40px;
+}
+.selected {
+    background-color: #00cfc4;
+}
+.backgroundColor {
+    background-color: #032939;
+}
+iframe {
+    width: 100%;
+    height: 100%;
+    background-color: #1b6d85;
+
 }

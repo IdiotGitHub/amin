@@ -1,0 +1,6 @@
+table tr td{
+    vertical-align: middle !important;
+}
+table thead th {
+    text-align: center;
+}
